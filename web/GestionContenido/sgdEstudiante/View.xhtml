@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdEstudianteViewDlg" widgetVar="SgdEstudianteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSgdEstudianteTitle}">
+            <h:form id="SgdEstudianteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdEstudianteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSgdEstudianteLabel_idx}"/>
+                        <h:outputText value="#{sgdEstudianteController.selected.idx}" title="#{bundle.ViewSgdEstudianteTitle_idx}"/>
+                        <h:outputText value="#{bundle.ViewSgdEstudianteLabel_nombre}"/>
+                        <h:outputText value="#{sgdEstudianteController.selected.nombre}" title="#{bundle.ViewSgdEstudianteTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewSgdEstudianteLabel_apellido}"/>
+                        <h:outputText value="#{sgdEstudianteController.selected.apellido}" title="#{bundle.ViewSgdEstudianteTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewSgdEstudianteLabel_totalCreditos}"/>
+                        <h:outputText value="#{sgdEstudianteController.selected.totalCreditos}" title="#{bundle.ViewSgdEstudianteTitle_totalCreditos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SgdEstudianteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdTipoDocumentoCampoEditDlg" widgetVar="SgdTipoDocumentoCampoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSgdTipoDocumentoCampoTitle}">
+            <h:form id="SgdTipoDocumentoCampoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdTipoDocumentoCampoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_idx}" for="idx" />
+                        <p:inputText id="idx" value="#{sgdTipoDocumentoCampoController.selected.idx}" title="#{bundle.EditSgdTipoDocumentoCampoTitle_idx}" required="true" requiredMessage="#{bundle.EditSgdTipoDocumentoCampoRequiredMessage_idx}"/>
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_valorCampo}" for="valorCampo" />
+                        <p:inputText id="valorCampo" value="#{sgdTipoDocumentoCampoController.selected.valorCampo}" title="#{bundle.EditSgdTipoDocumentoCampoTitle_valorCampo}" required="true" requiredMessage="#{bundle.EditSgdTipoDocumentoCampoRequiredMessage_valorCampo}"/>
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_validacion}" for="validacion" />
+                        <p:inputText id="validacion" value="#{sgdTipoDocumentoCampoController.selected.validacion}" title="#{bundle.EditSgdTipoDocumentoCampoTitle_validacion}" />
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_sgdCamposDocumentoIdx}" for="sgdCamposDocumentoIdx" />
+                        <p:selectOneMenu id="sgdCamposDocumentoIdx" value="#{sgdTipoDocumentoCampoController.selected.sgdCamposDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdTipoDocumentoCampoRequiredMessage_sgdCamposDocumentoIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdCamposDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdCamposDocumentoIdxItem"
+                                           itemValue="#{sgdCamposDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_sgdCategoriaDocumentoIdx}" for="sgdCategoriaDocumentoIdx" />
+                        <p:selectOneMenu id="sgdCategoriaDocumentoIdx" value="#{sgdTipoDocumentoCampoController.selected.sgdCategoriaDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdTipoDocumentoCampoRequiredMessage_sgdCategoriaDocumentoIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdCategoriaDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdCategoriaDocumentoIdxItem"
+                                           itemValue="#{sgdCategoriaDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSgdTipoDocumentoCampoLabel_sgdPosgradoTipoDocumentoIdx}" for="sgdPosgradoTipoDocumentoIdx" />
+                        <p:selectOneMenu id="sgdPosgradoTipoDocumentoIdx" value="#{sgdTipoDocumentoCampoController.selected.sgdPosgradoTipoDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdTipoDocumentoCampoRequiredMessage_sgdPosgradoTipoDocumentoIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdPosgradoTipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdPosgradoTipoDocumentoIdxItem"
+                                           itemValue="#{sgdPosgradoTipoDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sgdTipoDocumentoCampoController.update}" value="#{bundle.Save}" update="display,:SgdTipoDocumentoCampoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SgdTipoDocumentoCampoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SgdTipoDocumentoCampoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

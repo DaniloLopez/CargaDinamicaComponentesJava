@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdPosgradoTipoDocumentoEditDlg" widgetVar="SgdPosgradoTipoDocumentoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSgdPosgradoTipoDocumentoTitle}">
+            <h:form id="SgdPosgradoTipoDocumentoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdPosgradoTipoDocumentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoTipoDocumentoLabel_idx}" for="idx" />
+                        <p:inputText id="idx" value="#{sgdPosgradoTipoDocumentoController.selected.idx}" title="#{bundle.EditSgdPosgradoTipoDocumentoTitle_idx}" required="true" requiredMessage="#{bundle.EditSgdPosgradoTipoDocumentoRequiredMessage_idx}"/>
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoTipoDocumentoLabel_sgdPosgradoIdx}" for="sgdPosgradoIdx" />
+                        <p:selectOneMenu id="sgdPosgradoIdx" value="#{sgdPosgradoTipoDocumentoController.selected.sgdPosgradoIdx}" required="true" requiredMessage="#{bundle.EditSgdPosgradoTipoDocumentoRequiredMessage_sgdPosgradoIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdPosgradoController.itemsAvailableSelectOne}"
+                                           var="sgdPosgradoIdxItem"
+                                           itemValue="#{sgdPosgradoIdxItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoTipoDocumentoLabel_sgdTipoDocumentoIdx}" for="sgdTipoDocumentoIdx" />
+                        <p:selectOneMenu id="sgdTipoDocumentoIdx" value="#{sgdPosgradoTipoDocumentoController.selected.sgdTipoDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdPosgradoTipoDocumentoRequiredMessage_sgdTipoDocumentoIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdTipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdTipoDocumentoIdxItem"
+                                           itemValue="#{sgdTipoDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sgdPosgradoTipoDocumentoController.update}" value="#{bundle.Save}" update="display,:SgdPosgradoTipoDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SgdPosgradoTipoDocumentoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SgdPosgradoTipoDocumentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdDatosDocumentoCreateDlg" widgetVar="SgdDatosDocumentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSgdDatosDocumentoTitle}">
+            <h:form id="SgdDatosDocumentoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdDatosDocumentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSgdDatosDocumentoLabel_idx}" for="idx" />
+                        <p:inputText id="idx" value="#{sgdDatosDocumentoController.selected.idx}" title="#{bundle.CreateSgdDatosDocumentoTitle_idx}" required="true" requiredMessage="#{bundle.CreateSgdDatosDocumentoRequiredMessage_idx}"/>
+                        <p:outputLabel value="#{bundle.CreateSgdDatosDocumentoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sgdDatosDocumentoController.selected.nombre}" title="#{bundle.CreateSgdDatosDocumentoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateSgdDatosDocumentoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateSgdDatosDocumentoLabel_sgdCamposDocumentoIdx}" for="sgdCamposDocumentoIdx" />
+                        <p:selectOneMenu id="sgdCamposDocumentoIdx" value="#{sgdDatosDocumentoController.selected.sgdCamposDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdDatosDocumentoRequiredMessage_sgdCamposDocumentoIdx}">
+                            <f:selectItems value="#{sgdCamposDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdCamposDocumentoIdxItem"
+                                           itemValue="#{sgdCamposDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSgdDatosDocumentoLabel_sgdDocumentoIdx}" for="sgdDocumentoIdx" />
+                        <p:selectOneMenu id="sgdDocumentoIdx" value="#{sgdDatosDocumentoController.selected.sgdDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdDatosDocumentoRequiredMessage_sgdDocumentoIdx}">
+                            <f:selectItems value="#{sgdDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdDocumentoIdxItem"
+                                           itemValue="#{sgdDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSgdDatosDocumentoLabel_sgdPosgradoTipoDocumentoIdx}" for="sgdPosgradoTipoDocumentoIdx" />
+                        <p:selectOneMenu id="sgdPosgradoTipoDocumentoIdx" value="#{sgdDatosDocumentoController.selected.sgdPosgradoTipoDocumentoIdx}" required="true" requiredMessage="#{bundle.EditSgdDatosDocumentoRequiredMessage_sgdPosgradoTipoDocumentoIdx}">
+                            <f:selectItems value="#{sgdPosgradoTipoDocumentoController.itemsAvailableSelectOne}"
+                                           var="sgdPosgradoTipoDocumentoIdxItem"
+                                           itemValue="#{sgdPosgradoTipoDocumentoIdxItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sgdDatosDocumentoController.create}" value="#{bundle.Save}" update="display,:SgdDatosDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SgdDatosDocumentoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SgdDatosDocumentoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

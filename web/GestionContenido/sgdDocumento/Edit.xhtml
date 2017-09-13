@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdDocumentoEditDlg" widgetVar="SgdDocumentoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSgdDocumentoTitle}">
+            <h:form id="SgdDocumentoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdDocumentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_idx}" for="idx" />
+                        <p:inputText id="idx" value="#{sgdDocumentoController.selected.idx}" title="#{bundle.EditSgdDocumentoTitle_idx}" required="true" requiredMessage="#{bundle.EditSgdDocumentoRequiredMessage_idx}"/>
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sgdDocumentoController.selected.nombre}" title="#{bundle.EditSgdDocumentoTitle_nombre}" required="true" requiredMessage="#{bundle.EditSgdDocumentoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_visado}" for="visado" />
+                        <p:selectBooleanCheckbox id="visado" value="#{sgdDocumentoController.selected.visado}" />
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_creditos}" for="creditos" />
+                        <p:inputText id="creditos" value="#{sgdDocumentoController.selected.creditos}" title="#{bundle.EditSgdDocumentoTitle_creditos}" />
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_sgdCategoriaIdx}" for="sgdCategoriaIdx" />
+                        <p:inputText id="sgdCategoriaIdx" value="#{sgdDocumentoController.selected.sgdCategoriaIdx}" title="#{bundle.EditSgdDocumentoTitle_sgdCategoriaIdx}" required="true" requiredMessage="#{bundle.EditSgdDocumentoRequiredMessage_sgdCategoriaIdx}"/>
+                        <p:outputLabel value="#{bundle.EditSgdDocumentoLabel_sgdEstudianteIdx}" for="sgdEstudianteIdx" />
+                        <p:selectOneMenu id="sgdEstudianteIdx" value="#{sgdDocumentoController.selected.sgdEstudianteIdx}" required="true" requiredMessage="#{bundle.EditSgdDocumentoRequiredMessage_sgdEstudianteIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdEstudianteController.itemsAvailableSelectOne}"
+                                           var="sgdEstudianteIdxItem"
+                                           itemValue="#{sgdEstudianteIdxItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sgdDocumentoController.update}" value="#{bundle.Save}" update="display,:SgdDocumentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SgdDocumentoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SgdDocumentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdCategoriaDocumentoViewDlg" widgetVar="SgdCategoriaDocumentoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSgdCategoriaDocumentoTitle}">
+            <h:form id="SgdCategoriaDocumentoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdCategoriaDocumentoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSgdCategoriaDocumentoLabel_idx}"/>
+                        <h:outputText value="#{sgdCategoriaDocumentoController.selected.idx}" title="#{bundle.ViewSgdCategoriaDocumentoTitle_idx}"/>
+                        <h:outputText value="#{bundle.ViewSgdCategoriaDocumentoLabel_nombre}"/>
+                        <h:outputText value="#{sgdCategoriaDocumentoController.selected.nombre}" title="#{bundle.ViewSgdCategoriaDocumentoTitle_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SgdCategoriaDocumentoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

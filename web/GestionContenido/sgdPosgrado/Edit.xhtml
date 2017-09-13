@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SgdPosgradoEditDlg" widgetVar="SgdPosgradoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSgdPosgradoTitle}">
+            <h:form id="SgdPosgradoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sgdPosgradoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoLabel_idx}" for="idx" />
+                        <p:inputText id="idx" value="#{sgdPosgradoController.selected.idx}" title="#{bundle.EditSgdPosgradoTitle_idx}" required="true" requiredMessage="#{bundle.EditSgdPosgradoRequiredMessage_idx}"/>
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sgdPosgradoController.selected.nombre}" title="#{bundle.EditSgdPosgradoTitle_nombre}" required="true" requiredMessage="#{bundle.EditSgdPosgradoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditSgdPosgradoLabel_sgdFacultadIdx}" for="sgdFacultadIdx" />
+                        <p:selectOneMenu id="sgdFacultadIdx" value="#{sgdPosgradoController.selected.sgdFacultadIdx}" required="true" requiredMessage="#{bundle.EditSgdPosgradoRequiredMessage_sgdFacultadIdx}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sgdFacultadController.itemsAvailableSelectOne}"
+                                           var="sgdFacultadIdxItem"
+                                           itemValue="#{sgdFacultadIdxItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sgdPosgradoController.update}" value="#{bundle.Save}" update="display,:SgdPosgradoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SgdPosgradoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SgdPosgradoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

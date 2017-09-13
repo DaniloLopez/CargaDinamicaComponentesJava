@@ -39,6 +39,35 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
+                                                      
+                    <p:dataTable value="#{sgdPosgradoTipoDocumentoController.items}" var="item"
+                                 selectionMode="single" selection="#{sgdPosgradoTipoDocumentoController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idx}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >                       
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSgdPosgradoTipoDocumentoTitle_idx}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idx}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSgdPosgradoTipoDocumentoTitle_sgdPosgradoIdx}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sgdPosgradoIdx}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSgdPosgradoTipoDocumentoTitle_sgdTipoDocumentoIdx}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sgdTipoDocumentoIdx}"/>
+                        </p:column>                        
+                    </p:dataTable>                               
+                   
                     Welcome to PrimeFaces
                 </p:layoutUnit>
 

@@ -6,9 +6,11 @@
 package sesionBean;
 
 import entity.SgdPosgradoTipoDocumento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,13 @@ public class SgdPosgradoTipoDocumentoFacade extends AbstractFacade<SgdPosgradoTi
 
     public SgdPosgradoTipoDocumentoFacade() {
         super(SgdPosgradoTipoDocumento.class);
+    }
+    
+    public List<SgdPosgradoTipoDocumento> findAllByPosgrado(int id){
+        Query query = getEntityManager().createNamedQuery("SgdPosgradoTipoDocumento.findAllByPosgrado");
+        query.setParameter("idPos", id);
+        List<SgdPosgradoTipoDocumento> resultList = query.getResultList();
+        return resultList;
     }
     
 }
